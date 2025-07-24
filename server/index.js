@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const router = require("./routes/router");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
-const mongoUrl = "mongodb://localhost:27017/todo-app";
+const mongoUrl = process.env.MONGO_URL;
 
 app.use(cors());
 app.use(bodyParser.json());
