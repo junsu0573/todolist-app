@@ -7,12 +7,13 @@ require("dotenv").config();
 
 const app = express();
 const mongoUrl = process.env.MONGO_URL;
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", router);
 
-app.listen(3000, async () => {
+app.listen(port, async () => {
   await mongoose
     .connect(mongoUrl)
     .then(() => {
@@ -21,5 +22,5 @@ app.listen(3000, async () => {
     .catch((err) => {
       console.log("Error connecting to MongoDB", err);
     });
-  console.log("Server is running on port 3000");
+  console.log(`Server is running on port ${port}`);
 });
