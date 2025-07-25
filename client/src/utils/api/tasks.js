@@ -3,6 +3,7 @@ import api from "./api";
 export const getTasks = async () => {
   try {
     const res = await api.get("/tasks");
+    console.log(res.data);
     return res.data?.data || [];
   } catch (error) {
     console.error("Error fetching tasks:", error);
