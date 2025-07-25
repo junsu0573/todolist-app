@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const api = axios
-  .create({
-    baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  .then((res) => {
-    console.log(res.data);
-  });
+console.log(import.meta.env.VITE_BACKEND_URL);
+
+const api = axios.create({
+  baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 export default api;
