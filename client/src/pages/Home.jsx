@@ -18,7 +18,9 @@ function Home() {
 
   return (
     <div className="w-full flex flex-col items-center h-screen bg-gray-300 p-5 sm:p-20 text-sm sm:text-base">
-      <h1 className="w-full max-w-2xl mb-2">ToDo App</h1>
+      <div className="w-full flex justify-between items-center max-w-2xl mb-2">
+        <h1>ToDo App</h1>
+      </div>
       <AddTaskForm setTodoList={setTodoList} />
       <TodoBoard todoList={todoList} setTodoList={setTodoList} />
     </div>
