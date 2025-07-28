@@ -11,7 +11,7 @@ function TodoBoard({ todoList, setTodoList }) {
           todoList.map((item) => (
             <TodoItem
               key={item._id}
-              task={item.task}
+              item={item}
               completed={item.completed}
               id={item._id}
               setTodoList={setTodoList}

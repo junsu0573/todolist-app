@@ -3,7 +3,6 @@ import api from "./api";
 export const getTasks = async () => {
   try {
     const res = await api.get("/tasks");
-    console.log(res.data);
     return res.data?.data || [];
   } catch (error) {
     console.error("Error fetching tasks:", error);
@@ -11,9 +10,13 @@ export const getTasks = async () => {
   }
 };
 
-export const addTask = async (task) => {
+export const addTask = async (task, userId) => {
   try {
-    const res = await api.post("/tasks", { task });
+    const res = await api.post("/tasks", {
+      task,
+      completed: false,
+      author: userId,
+    });
     return res.data?.data || [];
   } catch (error) {
     console.error("Error adding task:", error);

@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { addTask } from "../utils/api/tasks";
+import { addTask, getTasks } from "../utils/api/tasks";
 
-function AddTaskForm({ setTodoList }) {
+function AddTaskForm({ setTodoList, user }) {
   const [value, setValue] = useState("");
 
   const onAddTask = async () => {
-    const res = await addTask(value);
-    setTodoList((prev) => [...prev, res]);
+    const res = await addTask(value, user.user._id);
+    const allTasks = await getTasks();
+    setTodoList(allTasks);
   };
 
   const onSubmit = (e) => {

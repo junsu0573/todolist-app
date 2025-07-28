@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getTasks } from "../utils/api/tasks";
 import { Link } from "react-router-dom";
 
-function Home() {
+function Home({ user }) {
   const [todoList, setTodoList] = useState([]);
 
   const fetchTasks = async () => {
@@ -25,7 +25,7 @@ function Home() {
           Login
         </Link>
       </div>
-      <AddTaskForm setTodoList={setTodoList} />
+      <AddTaskForm setTodoList={setTodoList} user={user} />
       <TodoBoard todoList={todoList} setTodoList={setTodoList} />
     </div>
   );

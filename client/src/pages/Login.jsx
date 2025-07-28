@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { loginUser } from "../utils/api/users";
-import { useNavigate } from "react-router-dom";
-import api from "../utils/api/api";
+import { Navigate } from "react-router-dom";
 import validator from "validator";
 import { Link } from "react-router-dom";
 
-function Login() {
-  const navigate = useNavigate();
+function Login({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [user, setUser] = useState({});
 
   const isAllFilled = () => {
     return email && password;
@@ -24,15 +21,14 @@ function Login() {
     } else {
       try {
         const res = await loginUser({ email, password });
+        sessionStorage.setItem("token", `Bearer ${res.token}`);
         setUser(res);
-        sessionStorage.setItem("token", res.token);
-        api.defaults.headers["Authorization"] = `Bearer ${res.token}`;
-        navigate("/");
       } catch (error) {
         setError("Invalid email or password");
       }
     }
   };
+  if (user) return <Navigate to="/" />;
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-300">

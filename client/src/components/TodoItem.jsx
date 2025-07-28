@@ -2,10 +2,10 @@ import { deleteTask, updateTask } from "../utils/api/tasks";
 import EditModal from "./EditModal";
 import { useState } from "react";
 
-function TodoItem({ task, completed, id, setTodoList }) {
+function TodoItem({ item, completed, id, setTodoList }) {
   const [isEdit, setIsEdit] = useState(false);
   const onClickStatus = () => {
-    updateTask(id, task, !completed);
+    updateTask(id, item.task, !completed);
     setTodoList((prev) =>
       prev.map((item) =>
         item._id === id ? { ...item, completed: !item.completed } : item
@@ -21,7 +21,7 @@ function TodoItem({ task, completed, id, setTodoList }) {
   return (
     <div className="w-full flex flex-col sm:flex-row justify-between gap-2 border border-gray-400 p-2 rounded-md">
       <div className="w-full flex gap-2 ">
-        <p className={"truncate w-full"}>{task}</p>
+        <p className={"truncate w-full"}>{item.task}</p>
         <button
           onClick={onClickStatus}
           className={`px-2 rounded-md shrink-0 ${
@@ -47,6 +47,7 @@ function TodoItem({ task, completed, id, setTodoList }) {
           Delete
         </button>
       </div>
+      <p className="text-xs text-right text-gray-500">by {item.author.name}</p>
       {isEdit && (
         <EditModal
           isOpen={isEdit}
